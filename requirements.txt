@@ -1,0 +1,9 @@
+certifi
+chardet
+click
+Flask
+idna
+itsdangerous
+Jinja2
+MarkupSafe
+Werkzeug
