@@ -7,3 +7,5 @@ itsdangerous
 Jinja2
 MarkupSafe
 Werkzeug
+peewee
+psycopg2

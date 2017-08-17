@@ -1,32 +1,18 @@
-from contextlib import contextmanager
+import os
+from urllib.parse import uses_netloc, urlparse
 
 import peewee
 from peewee import CharField, BigIntegerField
 
-db = peewee.SqliteDatabase('db/game.db')
-
-
-@contextmanager
-def connect():
-    try:
-        try:
-            db.connect()
-        except peewee.OperationalError:
-            pass
-        yield
-    finally:
-        db.close()
+uses_netloc.append('postgres')
+url = urlparse(os.environ["DATABASE_URL"])
+db = peewee.PostgresqlDatabase(database=url.path[1:], user=url.username, password=url.password, host=url.hostname,
+                               port=url.port)
 
 
 class DatabaseModel(peewee.Model):
     class Meta:
         database = db
-
-    def __new__(cls, *args, **kwargs):
-        return super().__new__(cls)
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
 
 
 class Player(DatabaseModel):
@@ -45,12 +31,6 @@ class Player(DatabaseModel):
     join_time = BigIntegerField()
     avatar_src = CharField()
     clicks = BigIntegerField()
-
-    def __new__(cls, *args, **kwargs):
-        return super().__new__(cls)
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
 
     def __repr__(self):
         return ', '.join((f'{name}: {self.__getattribute__(name)}' for name in self.get_attributes()))
@@ -106,9 +86,3 @@ class Player(DatabaseModel):
 
 
 db.create_tables([Player], safe=True)
-
-if __name__ == 'main':
-    for i in range(10):
-        Player.create_player(username=f'test{i}', password='test', join_time=0, avatar_src='www.google.de', clicks=i)
-
-    print(*Player.list(), sep='\n')
