@@ -10,7 +10,7 @@ app.secret_key = 'This is really unique and secret'
 
 @app.route('/list/')
 def log():
-    return '<a href="/">create player</a><br>' + '<br>'.join(map(str, Player.list()))
+    return '<a href="/">back</a><br>' + '<br>'.join(map(str, Player.list()))
 
 
 @app.route('/signin/', methods=['POST'])
@@ -21,7 +21,7 @@ def sign_in():
         for key, value in dict(request.form).items():
             player[key] = value[0]
         player = Player.create_player(**player)
-    response = make_response('<a href="/list/">all players</a><br>' + str(player))
+    response = make_response('<a href="/">back</a><br>' + str(player))
     response.set_cookie('username', player.username)
     response.set_cookie('password', player.password)
     return response
@@ -30,7 +30,7 @@ def sign_in():
 @app.route('/login/')
 @app.route('/register/')
 def register():
-    return '<a href="/list/">all players</a><br>'"""
+    return '<a href="/">back</a><br>'"""
     <form action="/signin/" method="post">
     <fieldset>
     <legend>Sign in:</legend>
