@@ -64,7 +64,14 @@ class Player(DatabaseModel):
     @staticmethod
     def get_player(username):
         player = list(Player.select().where(Player.username == username))
-        return player[0] if len(player) == 1 else None
+        if len(player) == 1:
+            return player[0]
+
+    @staticmethod
+    def get_player_if_auth(username, password):
+        player = Player.get_player(username)
+        if player and player.username == username and player.password == password:
+            return player
 
     @staticmethod
     def create_player(**player):
@@ -89,7 +96,6 @@ class Player(DatabaseModel):
         Set a set of attributes from kwargs to player
         :param player: A username which is looked up in the db or a Player
         :param attrs: The attributes
-        :return: 
         """
         if isinstance(player, str):
             player = Player.get_player(player)
