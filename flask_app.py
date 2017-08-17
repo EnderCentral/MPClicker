@@ -30,18 +30,7 @@ def sign_in():
 @app.route('/login/')
 @app.route('/register/')
 def register():
-    return '<a href="/">back</a><br>'"""
-    <form action="/signin/" method="post">
-    <fieldset>
-    <legend>Sign in:</legend>
-    Nickname:<br>
-    <input type="text" name="username"><br>
-    Password:<br>
-    <input type="password" name="password">
-    <input type="submit" value="Submit">
-    </fieldset>
-    </form>
-"""
+    return render_template('register.html')
 
 
 @app.route('/incr/', methods=['POST'])
@@ -58,21 +47,7 @@ def incr():
 
 @app.route('/')
 def main():
-    return '<a href="/list/">all players</a><br>' \
-           '<a href="/login/">login</a><br>' \
-           """<script>
-           incr_xhr = new XMLHttpRequest();
-           incr_xhr.onload = function (){
-               document.getElementById("clicks").innerHTML = incr_xhr.response
-           }
-           handle_click = function(){
-               incr_xhr.open("POST", '/incr/');
-               incr_xhr.send(1)
-           }
-           </script>""" \
-           '<button type="button" onclick="handle_click()">Click Me!</button>' \
-           '<p id="clicks"></p>'
-    return render_template('Cockie.html')
+    return render_template('cookie.html')
 
 
 if __name__ == '__main__':
