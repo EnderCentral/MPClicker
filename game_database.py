@@ -14,12 +14,6 @@ class DatabaseModel(peewee.Model):
     class Meta:
         database = db
 
-    def __new__(cls, *args, **kwargs):
-        return super().__new__(cls)
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-
 
 class Player(DatabaseModel):
     table_name = 'player'
@@ -37,12 +31,6 @@ class Player(DatabaseModel):
     join_time = BigIntegerField()
     avatar_src = CharField()
     clicks = BigIntegerField()
-
-    def __new__(cls, *args, **kwargs):
-        return super().__new__(cls)
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
 
     def __repr__(self):
         return ', '.join((f'{name}: {self.__getattribute__(name)}' for name in self.get_attributes()))
