@@ -49,9 +49,13 @@ def incr():
 def main():
     if 'username' in request.cookies and 'password' in request.cookies:
         player = Player.get_player_if_auth(request.cookies['username'], request.cookies['password'])
-        if player:
-            return render_template('cookie.html', player=player)
-    return render_template('cookie.html')
+        if not player:
+            player = type('', (object,), {
+                'avatar_src': '',
+                'username': '',
+                'clicks': ''
+            })
+        return render_template('cookie.html', player=player)
 
 
 if __name__ == '__main__':
