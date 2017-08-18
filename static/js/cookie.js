@@ -1,10 +1,9 @@
-mpcookie={
-    incr_xhr: new XMLHttpRequest(),
-    handle_click: function(){
-        incr_xhr.open("POST", '/incr/');
-        incr_xhr.send(1)
-    }
-}
-mpcookie.incr_xhr.onload: function (){
-    document.getElementById("clicks").innerHTML = incr_xhr.response
-}
+mpcookie = {};
+mpcookie.incr_xhr = new XMLHttpRequest();
+mpcookie.incr_xhr.onload = function () {
+    document.getElementById("clicks").innerHTML = mpcookie.incr_xhr.response
+};
+mpcookie.handle_click = function () {
+    mpcookie.incr_xhr.open("POST", "/incr/");
+    mpcookie.incr_xhr.send(1)
+};
