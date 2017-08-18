@@ -1,4 +1,7 @@
 import os
+import time
+import random
+import string
 from urllib.parse import uses_netloc, urlparse
 
 import peewee
@@ -19,10 +22,10 @@ class Player(DatabaseModel):
     table_name = 'player'
 
     defaults = {
-        'username': 'test',
-        'password': 'random',
-        'join_time': 1,
-        'avatar_src': 'google.de',
+        'username': ''.join(random.choice(string.ascii_letters) for _ in range(8)),
+        'password': ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(10)),
+        'join_time': int(time.time()),
+        'avatar_src': '/static/css/cookie.svg',
         'clicks': 0
     }
 
