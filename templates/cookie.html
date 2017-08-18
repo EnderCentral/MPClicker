@@ -1,13 +1,27 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <link rel="stylesheet" href="/static/css/style.css">
     <script src="/static/js/cookie.js"></script>
 </head>
+
 <body>
-<a href="/list/">all players</a><br>
-<a href="/login/">login</a><br>
-<button type="button" onclick="mpcookie.handle_click()">Click Me!</button>
-<p id="clicks"></p>
+<nav>
+    <ul>
+        <li><a href="/list/">all players</a></li>
+        <li><a href="/login/">login</a></li>
+    </ul>
+    <ul class="right">
+        <li><p id="clicks">0</p></li>
+    </ul>
+</nav>
+<div id="cookie-container">
+    <img id="cookie" src="/static/img/cookie.svg" onclick="mpcookie.handle_click()"/>
+</div>
 </body>
+
 </html>
