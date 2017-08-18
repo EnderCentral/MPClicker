@@ -25,7 +25,7 @@ class Player(DatabaseModel):
         'username': ''.join(random.choice(string.ascii_letters) for _ in range(8)),
         'password': ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(10)),
         'join_time': int(time.time()),
-        'avatar_src': '/static/css/cookie.svg',
+        'avatar_src': '/static/img/cookie.svg',
         'clicks': 0
     }
 
