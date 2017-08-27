@@ -39,9 +39,9 @@ def incr():
     if 'username' in request.cookies and 'password' in request.cookies:
         player = Player.get_player_if_auth(request.cookies['username'], request.cookies['password'])
         if player:
-            if request.data.decode():
-                player.clicks += 1
-                player.save()
+            json = request.get_json()
+            player.clicks += json.get('clicks', 0)
+            player.save()
     return str(player.clicks) if player else request.data.decode()
 
 
