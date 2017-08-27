@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="UTF-8">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
     <link rel="stylesheet" href="/static/css/style.css">
     <script src="/static/js/cookie.js"></script>
@@ -12,11 +11,9 @@
 <body>
 <nav>
     <ul>
-        <li><a href="/list/">all players</a></li>
-        <li><a href="/login/">login</a></li>
-    </ul>
-    <ul class="right">
-        <li><img src="{{ player.avatar_src }}"></li>
+        <li class="left"><a href="/list/">all players</a></li>
+        <li class="left"><a href="/login/">login</a></li>
+        <li id="avatar-container"><img id="avatar" src="{{ player.avatar_src }}"></li>
         <li><p>{{ player.username }}</p></li>
         <li><p id="clicks">{{ player.clicks }}</p></li>
     </ul>
@@ -25,5 +22,4 @@
     <img id="cookie" src="/static/img/cookie.svg" onclick="mpcookie.handle_click()"/>
 </div>
 </body>
-
 </html>

@@ -1,11 +1,14 @@
 /* general style */
+* {
+	transition: all 1s;
+}
 
 html {
-	font-family: 'Roboto', sans-serif;
-	box-sizing: border-box;
-	height: 100vh;
 	width: 100vw;
-	overflow-x: hidden;
+	height: 100vh;
+	font-size: 3vmax;
+	box-sizing: border-box;
+	font-family: 'Roboto', sans-serif;
 }
 
 body {
@@ -41,19 +44,33 @@ nav {
 }
 
 nav ul {
-	list-style: none;
 	padding: 3%;
-	display: inline-flex;
-	max-width:50%; 
+	list-style: none;
+	text-align: right;
 }
 
-nav ul li * {
-	margin-right: 3em;
+nav ul,
+nav ul * {
+	height: 3vmax;
 }
 
-nav ul.right {
-	position: absolute;
-	right: 0;
+nav ul li:last-child,
+nav ul li#avatar-container {
+    margin: 0;
+}
+
+nav ul li {
+	margin-right: 3vmax;
+	display: inline-block;
+	transition: all 1s ease-in-out;
+}
+
+nav ul li#avatar-container img#avatar {
+    height: 2.5vmax;
+}
+
+nav ul li.left {
+    float: left;
 }
 
 
@@ -62,14 +79,22 @@ nav ul.right {
 #cookie-container {
 	height: 90%;
 	width: 100%;
-	position: absolute;
+    display: block;
+    text-align: center;
 }
 
 #cookie {
-	position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    height: 80vmin;
     cursor: pointer;
-	margin: 0;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%) scale(3);
+    position: absolute;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#cookie:active {
+    transform: scale(0.9);
 }
