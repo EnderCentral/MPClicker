@@ -2,7 +2,13 @@ mpcookie = {
     'counter': 0,
     'question': true
 };
+
 mpcookie.incr_xhr = new XMLHttpRequest();
+mpcookie.incr_xhr.onload = function() {
+    console.log(this.response);
+    mpcookie.clicks.innerHTML = JSON.parse(this.response).clicks
+};
+
 mpcookie.save_clicks = function() {
     if (mpcookie.counter > 0) {
         mpcookie.incr_xhr.open("POST", "/incr/");
